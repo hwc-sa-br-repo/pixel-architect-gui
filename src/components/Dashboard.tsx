@@ -7,12 +7,9 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export const Dashboard = () => {
   return (
-    <div className="min-h-screen p-6 space-y-8">
+    <div className="p-6 space-y-8">
       {/* Header */}
       <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold bg-gradient-primary bg-clip-text text-transparent">
-          Elo Funil Design
-        </h1>
         <p className="text-muted-foreground max-w-2xl mx-auto">
           Interface de arquitetura avançada com visualização de funil, componentes modulares e fluxos interativos
         </p>
