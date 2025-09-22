@@ -1,58 +1,72 @@
-# Welcome to your Lovable project
+# Pixel Architect GUI
 
-## Project info
+Interface construída com React, Vite e Tailwind a partir do projeto publicado pela Lovable.
 
-**URL**: https://lovable.dev/projects/1fa8663c-fc55-488b-84bd-4127e6aa08cd
+## Requisitos
 
-## How can I edit this code?
+- Node.js 18 ou superior (recomendamos gerenciar versões com [nvm](https://github.com/nvm-sh/nvm#installing-and-updating))
+- npm 9 ou superior (instalado junto com o Node.js)
 
-There are several ways of editing your application.
+> 💡 Use `node -v` e `npm -v` para conferir se as versões instaladas atendem aos requisitos.
 
-**Use Lovable**
+## Executando localmente (servidor de desenvolvimento Vite)
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/1fa8663c-fc55-488b-84bd-4127e6aa08cd) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+Use o servidor integrado do Vite para ter recarregamento automático durante o desenvolvimento:
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+git clone <URL_DO_REPOSITORIO>
+cd pixel-architect-gui
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+O terminal exibirá o endereço local (por padrão `http://localhost:5173`). Pressione `Ctrl+C` para encerrar.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Servidor Node.js para a versão compilada
 
-**Use GitHub Codespaces**
+Para disponibilizar a interface pronta para produção em um servidor HTTP simples, adicionamos o arquivo `server.js`, que utiliza apenas módulos nativos do Node.js. Ele lê os arquivos da pasta `dist` (gerada após o build) e atende quaisquer rotas caindo em `index.html`, garantindo que o roteamento do React continue funcionando.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Siga os passos abaixo com atenção:
 
-## What technologies are used for this project?
+1. **Instale as dependências do projeto (somente na primeira vez):**
+   ```sh
+   npm install
+   ```
 
-This project is built with:
+2. **Gere os arquivos otimizados na pasta `dist`:**
+   ```sh
+   npm run build
+   ```
+   - O build empacota a aplicação para produção.
+   - Se você alterar o código, execute novamente este comando antes de iniciar o servidor.
+
+3. **Inicie o servidor HTTP local:**
+   ```sh
+   npm run start
+   ```
+   - O script executa `node server.js`.
+   - O servidor verifica se a pasta `dist` existe e avisa caso o build ainda não tenha sido executado.
+   - Por padrão, a aplicação ficará disponível em `http://localhost:4173`. Para usar outra porta, defina a variável de ambiente `PORT`, por exemplo: `PORT=3000 npm run start`.
+
+4. **Encerrar o servidor:** pressione `Ctrl+C` no terminal onde ele está rodando.
+
+### Como o servidor funciona
+
+- Atende qualquer arquivo estático solicitado dentro da pasta `dist` (JavaScript, CSS, imagens, fontes, etc.).
+- Para rotas não encontradas, retorna `index.html`, permitindo o funcionamento do `react-router-dom` em modo histórico.
+- Não depende de bibliotecas externas (como Express); somente módulos nativos, garantindo compatibilidade em ambientes sem acesso ao npm registry.
+
+## Dúvidas frequentes
+
+### Posso editar via Lovable?
+
+Sim. Basta abrir o [Projeto Lovable](https://lovable.dev/projects/1fa8663c-fc55-488b-84bd-4127e6aa08cd) e continuar a iteração. Alterações feitas lá serão refletidas neste repositório.
+
+### Posso editar direto no GitHub?
+
+Sim. Abra o arquivo desejado, clique em **Edit**, faça as mudanças e confirme o commit.
+
+### Quais tecnologias compõem o projeto?
 
 - Vite
 - TypeScript
@@ -60,14 +74,6 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+### Como publicar?
 
-Simply open [Lovable](https://lovable.dev/projects/1fa8663c-fc55-488b-84bd-4127e6aa08cd) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Abra o projeto na Lovable, clique em **Share → Publish** e siga as instruções. Para usar um domínio customizado, vá em **Project → Settings → Domains**.
