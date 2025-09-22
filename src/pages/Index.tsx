@@ -1,6 +1,6 @@
-import { Dashboard } from "@/components/Dashboard";
 import { AppSidebar } from "@/components/AppSidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { Outlet } from "react-router-dom";
 
 const Index = () => {
   return (
@@ -12,8 +12,8 @@ const Index = () => {
             <SidebarTrigger className="mr-4" />
             <h1 className="text-lg font-semibold">Elo Funil Design</h1>
           </header>
-          <div className="flex-1">
-            <Dashboard />
+          <div className="flex-1 overflow-y-auto">
+            <Outlet />
           </div>
         </main>
       </div>
