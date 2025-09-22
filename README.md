@@ -23,6 +23,7 @@ npm run dev
 O terminal exibirá o endereço local (por padrão `http://localhost:5173`). Pressione `Ctrl+C` para encerrar.
 
 > ❗️ Se aparecer a mensagem `sh: 1: vite: not found`, significa que a instalação das dependências não foi concluída.
+
 > Execute novamente `npm install` (mesmo em ambientes que usam `npm install --omit=dev`, os pacotes fundamentais como `vite`, `@vitejs/plugin-react-swc`, `tailwindcss` e `autoprefixer` são instalados como dependências regulares) e depois rode `npm run dev`.
 
 ## Servidor Node.js para a versão compilada
