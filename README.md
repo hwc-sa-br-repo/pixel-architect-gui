@@ -22,7 +22,8 @@ npm run dev
 
 O terminal exibirá o endereço local (por padrão `http://localhost:5173`). Pressione `Ctrl+C` para encerrar.
 
-<> ❗️ Se aparecer a mensagem `sh: 1: vite: not found`, significa que a instalação das dependências não foi concluída.
+> ❗️ Se aparecer a mensagem `sh: 1: vite: not found`, significa que a instalação das dependências não foi concluída.
+
 > Execute novamente `npm install` (mesmo em ambientes que usam `npm install --omit=dev`, os pacotes fundamentais como `vite`, `@vitejs/plugin-react-swc`, `tailwindcss` e `autoprefixer` são instalados como dependências regulares) e depois rode `npm run dev`.
 
 ## Servidor Node.js para a versão compilada
@@ -50,7 +51,7 @@ Siga os passos abaixo com atenção:
    - O script executa `node server.js`.
    - O servidor verifica se a pasta `dist` existe e avisa caso o build ainda não tenha sido executado.
    - Por padrão, a aplicação ficará disponível em `http://localhost:4173`. Para usar outra porta, defina a variável de ambiente `PORT`, por exemplo: `PORT=3000 npm run start`.
- 
+
 4. **Encerrar o servidor:** pressione `Ctrl+C` no terminal onde ele está rodando.
 
 ### Como o servidor funciona
