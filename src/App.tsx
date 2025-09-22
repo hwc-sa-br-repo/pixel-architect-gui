@@ -8,6 +8,8 @@ import NotFound from "./pages/NotFound";
 import { Dashboard } from "./components/Dashboard";
 import { NewIdea } from "./pages/NewIdea";
 import { ExistingIdeas } from "./pages/ExistingIdeas";
+import { MarketMapping } from "./pages/MarketMapping";
+import { PainMapping } from "./pages/PainMapping";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +24,8 @@ const App = () => (
             <Route index element={<Dashboard />} />
             <Route path="nova-ideia" element={<NewIdea />} />
             <Route path="ideias-existentes" element={<ExistingIdeas />} />
+            <Route path="mapeamento-mercado" element={<MarketMapping />} />
+            <Route path="mapeamento-dores" element={<PainMapping />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
