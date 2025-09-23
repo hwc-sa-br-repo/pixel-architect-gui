@@ -267,6 +267,7 @@ export const PainMapping = () => {
 
         <div className="space-y-6">
           <Card className="border-primary/30 bg-primary/5 shadow-sm">
+          <Card className="border-rose-200 bg-rose-50/80 shadow-sm">
             <CardHeader className="space-y-1">
               <CardTitle className="text-lg font-semibold">Personalização rápida</CardTitle>
               <CardDescription>
