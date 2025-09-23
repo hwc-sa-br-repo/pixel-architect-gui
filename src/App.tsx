@@ -10,6 +10,7 @@ import { NewIdea } from "./pages/NewIdea";
 import { ExistingIdeas } from "./pages/ExistingIdeas";
 import { MarketMapping } from "./pages/MarketMapping";
 import { PainMapping } from "./pages/PainMapping";
+import { HypothesesGeneration } from "./pages/HypothesesGeneration";
 
 const queryClient = new QueryClient();
 
@@ -26,6 +27,7 @@ const App = () => (
             <Route path="ideias-existentes" element={<ExistingIdeas />} />
             <Route path="mapeamento-mercado" element={<MarketMapping />} />
             <Route path="mapeamento-dores" element={<PainMapping />} />
+            <Route path="geracao-hipoteses" element={<HypothesesGeneration />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
