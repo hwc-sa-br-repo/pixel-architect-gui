@@ -44,6 +44,38 @@ const layoutDefaults = {
 
 type LayoutOptionKey = keyof typeof layoutDefaults;
 
+const layoutControls: Array<{
+  key: LayoutOptionKey;
+  title: string;
+  description: string;
+}> = [
+  {
+    key: "showHeaderBadge",
+    title: "Faixa de contexto",
+    description: "Mostra o selo “Geração de hipóteses” acima do título.",
+  },
+  {
+    key: "showAddHypothesisAction",
+    title: "Ação de adicionar",
+    description: "Exibe o botão para criar novas hipóteses rapidamente.",
+  },
+  {
+    key: "showHypothesisNotes",
+    title: "Notas de alinhamento",
+    description: "Mantém o lembrete sobre itens adicionais a cada oportunidade.",
+  },
+  {
+    key: "showRiskSection",
+    title: "Riscos e restrições",
+    description: "Controla o bloco de risco de viabilidade e aspectos legais.",
+  },
+  {
+    key: "showOpportunityTree",
+    title: "Árvore de oportunidades",
+    description: "Mostra o fluxo visual entre outcome, oportunidades e testes.",
+  },
+];
+
 const initialHypothesis: Hypothesis = {
   id: "initial",
   pain:
@@ -396,54 +428,18 @@ export const HypothesesGeneration = () => {
             </CardHeader>
             <CardContent className="space-y-6">
               <div className="space-y-4">
-                <div className="flex items-center justify-between gap-4">
-                  <div>
-                    <p className="text-sm font-medium text-foreground">Faixa de contexto</p>
-                    <p className="text-xs text-muted-foreground">Mostra o selo “Geração de hipóteses” acima do título.</p>
+                {layoutControls.map((control) => (
+                  <div key={control.key} className="flex items-center justify-between gap-4">
+                    <div>
+                      <p className="text-sm font-medium text-foreground">{control.title}</p>
+                      <p className="text-xs text-muted-foreground">{control.description}</p>
+                    </div>
+                    <Switch
+                      checked={layoutOptions[control.key]}
+                      onCheckedChange={toggleLayoutOption(control.key)}
+                    />
                   </div>
-                  <Switch checked={layoutOptions.showHeaderBadge} onCheckedChange={toggleLayoutOption("showHeaderBadge")} />
-                </div>
-
-                <div className="flex items-center justify-between gap-4">
-                  <div>
-                    <p className="text-sm font-medium text-foreground">Ação de adicionar</p>
-                    <p className="text-xs text-muted-foreground">Exibe o botão para criar novas hipóteses rapidamente.</p>
-                  </div>
-                  <Switch
-                    checked={layoutOptions.showAddHypothesisAction}
-                    onCheckedChange={toggleLayoutOption("showAddHypothesisAction")}
-                  />
-                </div>
-
-                <div className="flex items-center justify-between gap-4">
-                  <div>
-                    <p className="text-sm font-medium text-foreground">Notas de alinhamento</p>
-                    <p className="text-xs text-muted-foreground">Mantém o lembrete sobre itens adicionais a cada oportunidade.</p>
-                  </div>
-                  <Switch
-                    checked={layoutOptions.showHypothesisNotes}
-                    onCheckedChange={toggleLayoutOption("showHypothesisNotes")}
-                  />
-                </div>
-
-                <div className="flex items-center justify-between gap-4">
-                  <div>
-                    <p className="text-sm font-medium text-foreground">Riscos e restrições</p>
-                    <p className="text-xs text-muted-foreground">Controla o bloco de risco de viabilidade e aspectos legais.</p>
-                  </div>
-                  <Switch checked={layoutOptions.showRiskSection} onCheckedChange={toggleLayoutOption("showRiskSection")} />
-                </div>
-
-                <div className="flex items-center justify-between gap-4">
-                  <div>
-                    <p className="text-sm font-medium text-foreground">Árvore de oportunidades</p>
-                    <p className="text-xs text-muted-foreground">Mostra o fluxo visual entre outcome, oportunidades e testes.</p>
-                  </div>
-                  <Switch
-                    checked={layoutOptions.showOpportunityTree}
-                    onCheckedChange={toggleLayoutOption("showOpportunityTree")}
-                  />
-                </div>
+                ))}
               </div>
 
               <div className="rounded-lg border border-dashed border-primary/40 bg-background/60 p-4 text-sm text-muted-foreground">
