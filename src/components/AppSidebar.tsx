@@ -331,7 +331,7 @@ export function AppSidebar() {
               </SidebarMenuButton>
             </SidebarMenuItem>
           </SidebarMenu>
-          <SidebarTrigger className="mt-4 w-full" />
+          <SidebarTrigger className="w-full" />
         </SidebarFooter>
       </Sidebar>
 
