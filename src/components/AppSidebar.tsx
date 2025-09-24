@@ -35,6 +35,7 @@ const menuSections = [
     items: [
       { title: "Nova Idéia", url: "/nova-ideia", icon: Lightbulb },
       { title: "Ideias existentes", url: "/ideias-existentes", icon: Archive },
+      { title: "Minhas Ideias", url: "/minhas-ideias", icon: Archive },
       { title: "Micro-oportunidades", url: "/micro-oportunidades", icon: Target },
       { title: "Categorias", url: "/categorias", icon: Tag },
       { title: "Aprovações", url: "/aprovacoes", icon: CheckCircle },
