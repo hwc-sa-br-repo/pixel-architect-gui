@@ -266,11 +266,12 @@ export const PainMapping = () => {
         </div>
 
         <div className="space-y-6">
-          <Card className="border-rose-200 bg-rose-50/80 shadow-sm">
+          <Card className="border-primary/30 bg-primary/5 shadow-sm">
             <CardHeader className="space-y-1">
-              <CardTitle className="text-lg font-semibold">Personalização gráfica</CardTitle>
+              <CardTitle className="text-lg font-semibold">Personalização rápida</CardTitle>
               <CardDescription>
-                Escolha quais blocos visuais devem aparecer sem alterar nenhuma informação da matriz de dores.
+                Selecione os blocos visuais que devem aparecer no painel, preservando a estrutura original do mapeamento de
+                dores.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
@@ -278,7 +279,7 @@ export const PainMapping = () => {
                 <div className="flex items-center justify-between gap-4">
                   <div>
                     <p className="text-sm font-medium text-foreground">Selo contextual</p>
-                    <p className="text-xs text-muted-foreground">Faixa informativa sobre o tipo de diagnóstico.</p>
+                    <p className="text-xs text-muted-foreground">Faixa informativa que apresenta o tipo de diagnóstico.</p>
                   </div>
                   <Switch checked={layoutOptions.showBadge} onCheckedChange={toggleLayoutOption("showBadge")} />
                 </div>
@@ -286,7 +287,7 @@ export const PainMapping = () => {
                 <div className="flex items-center justify-between gap-4">
                   <div>
                     <p className="text-sm font-medium text-foreground">Botão de exportação</p>
-                    <p className="text-xs text-muted-foreground">Exibe o CTA para compartilhar a visão em PDF.</p>
+                    <p className="text-xs text-muted-foreground">Mantém o CTA para compartilhar a visão consolidada.</p>
                   </div>
                   <Switch checked={layoutOptions.showExport} onCheckedChange={toggleLayoutOption("showExport")} />
                 </div>
@@ -294,7 +295,7 @@ export const PainMapping = () => {
                 <div className="flex items-center justify-between gap-4">
                   <div>
                     <p className="text-sm font-medium text-foreground">Bloco explicativo</p>
-                    <p className="text-xs text-muted-foreground">Contextualiza como interpretar a matriz comparativa.</p>
+                    <p className="text-xs text-muted-foreground">Contextualiza como interpretar o painel comparativo.</p>
                   </div>
                   <Switch checked={layoutOptions.showLegend} onCheckedChange={toggleLayoutOption("showLegend")} />
                 </div>
@@ -302,7 +303,7 @@ export const PainMapping = () => {
                 <div className="flex items-center justify-between gap-4">
                   <div>
                     <p className="text-sm font-medium text-foreground">Tabela de dores x oportunidades</p>
-                    <p className="text-xs text-muted-foreground">Exibe o grid principal sem permitir edição de dados.</p>
+                    <p className="text-xs text-muted-foreground">Mantém a matriz principal com dores e respostas estratégicas.</p>
                   </div>
                   <Switch checked={layoutOptions.showTable} onCheckedChange={toggleLayoutOption("showTable")} />
                 </div>
@@ -310,7 +311,7 @@ export const PainMapping = () => {
                 <div className="flex items-center justify-between gap-4">
                   <div>
                     <p className="text-sm font-medium text-foreground">Insights acionáveis</p>
-                    <p className="text-xs text-muted-foreground">Cartões auxiliares com orientações de uso.</p>
+                    <p className="text-xs text-muted-foreground">Cartões de apoio com recomendações práticas.</p>
                   </div>
                   <Switch checked={layoutOptions.showInsights} onCheckedChange={toggleLayoutOption("showInsights")} />
                 </div>
@@ -318,15 +319,15 @@ export const PainMapping = () => {
                 <div className="flex items-center justify-between gap-4">
                   <div>
                     <p className="text-sm font-medium text-foreground">Notas de apresentação</p>
-                    <p className="text-xs text-muted-foreground">Lembretes sobre o objetivo da sessão de análise.</p>
+                    <p className="text-xs text-muted-foreground">Lembretes estratégicos para conduzir a reunião.</p>
                   </div>
                   <Switch checked={layoutOptions.showNotes} onCheckedChange={toggleLayoutOption("showNotes")} />
                 </div>
               </div>
 
-              <div className="rounded-lg border border-dashed border-rose-300 bg-background/70 p-4 text-sm text-muted-foreground">
-                Os controles acima apenas adicionam ou removem componentes visuais. Os textos originais permanecem
-                protegidos contra alterações acidentais.
+              <div className="rounded-lg border border-dashed border-primary/40 bg-background/60 p-4 text-sm text-muted-foreground">
+                Ajustar a composição visual não altera nenhum texto base do diagnóstico — os dados permanecem protegidos contra
+                edições acidentais.
               </div>
             </CardContent>
           </Card>
