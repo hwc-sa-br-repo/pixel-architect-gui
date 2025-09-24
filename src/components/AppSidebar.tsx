@@ -1,4 +1,5 @@
 import { useState } from "react";
+import eloLogo from "@/assets/elo-logo.svg";
 import {
   Lightbulb,
   Archive,
@@ -276,13 +277,13 @@ export function AppSidebar() {
         collapsible="icon"
         className="border-r"
       >
-        <div className="border-b p-4">
+        <div className="flex h-12 items-center border-b px-4">
           {state === "expanded" ? (
             <h2 className="bg-gradient-primary bg-clip-text text-lg font-semibold text-transparent">
               Menu Lateral
             </h2>
           ) : (
-            <div className="h-6 w-6 rounded bg-gradient-primary" />
+            <img src={eloLogo} alt="Elo Funil Design" className="h-6 w-6" />
           )}
         </div>
 
