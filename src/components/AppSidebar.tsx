@@ -1,18 +1,20 @@
-import { 
-  Lightbulb, 
-  Archive, 
-  Target, 
-  Tag, 
-  CheckCircle, 
-  Map, 
-  Heart, 
-  Zap, 
-  Shield, 
-  FlaskConical, 
-  Search, 
-  Database, 
-  Puzzle, 
-  UserCheck 
+import {
+  Lightbulb,
+  Archive,
+  Target,
+  Tag,
+  CheckCircle,
+  Map,
+  Heart,
+  Zap,
+  Shield,
+  FlaskConical,
+  Search,
+  Database,
+  Puzzle,
+  UserCheck,
+  Settings,
+  LifeBuoy
 } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
 
@@ -25,6 +27,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  SidebarFooter,
   SidebarTrigger,
   useSidebar,
 } from "@/components/ui/sidebar";
@@ -35,6 +38,7 @@ const menuSections = [
     items: [
       { title: "Nova Idéia", url: "/nova-ideia", icon: Lightbulb },
       { title: "Ideias existentes", url: "/ideias-existentes", icon: Archive },
+      { title: "Minhas Ideias", url: "/minhas-ideias", icon: Archive },
       { title: "Micro-oportunidades", url: "/micro-oportunidades", icon: Target },
       { title: "Categorias", url: "/categorias", icon: Tag },
       { title: "Aprovações", url: "/aprovacoes", icon: CheckCircle },
@@ -115,9 +119,23 @@ export function AppSidebar() {
         ))}
       </SidebarContent>
 
-      <div className="mt-auto p-4 border-t">
-        <SidebarTrigger className="w-full" />
-      </div>
+      <SidebarFooter className="mt-auto border-t p-4">
+        <SidebarMenu className="space-y-1">
+          <SidebarMenuItem>
+            <SidebarMenuButton className="gap-3" size="lg">
+              <Settings className="h-4 w-4" />
+              <span className="text-sm font-medium">Configurações</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+          <SidebarMenuItem>
+            <SidebarMenuButton className="gap-3" size="lg">
+              <LifeBuoy className="h-4 w-4" />
+              <span className="text-sm font-medium">Central Ajuda</span>
+            </SidebarMenuButton>
+          </SidebarMenuItem>
+        </SidebarMenu>
+        <SidebarTrigger className="mt-4 w-full" />
+      </SidebarFooter>
     </Sidebar>
   );
 }
