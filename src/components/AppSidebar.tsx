@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import {
   Lightbulb,
   Archive,
@@ -166,13 +165,13 @@ export function AppSidebar() {
         <SidebarFooter className="mt-auto border-t p-4">
           <SidebarMenu className="space-y-1">
             <SidebarMenuItem>
-              <SidebarMenuButton className="gap-3" size="lg" onClick={() => setIsSettingsOpen(true)}>
+              <SidebarMenuButton className="gap-2" onClick={() => setIsSettingsOpen(true)}>
                 <Settings className="h-4 w-4" />
                 <span className="text-sm font-medium">Configurações</span>
               </SidebarMenuButton>
             </SidebarMenuItem>
             <SidebarMenuItem>
-              <SidebarMenuButton className="gap-3" size="lg">
+              <SidebarMenuButton className="gap-2">
                 <LifeBuoy className="h-4 w-4" />
                 <span className="text-sm font-medium">Central Ajuda</span>
               </SidebarMenuButton>
