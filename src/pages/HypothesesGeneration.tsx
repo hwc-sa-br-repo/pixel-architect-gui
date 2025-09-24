@@ -137,8 +137,6 @@ const HypothesisCard = ({
   onAddOpportunity: () => void;
   showNote: boolean;
   showRiskSection: boolean;
-
-
 }) => {
   const textareaId = useId();
 
@@ -265,7 +263,6 @@ const HypothesisCard = ({
             </div>
           </div>
         )}
-
       </CardContent>
     </Card>
   );
@@ -273,13 +270,11 @@ const HypothesisCard = ({
 
 export const HypothesesGeneration = () => {
   const [hypotheses, setHypotheses] = useState<Hypothesis[]>([initialHypothesis]);
-
   const [layoutOptions, setLayoutOptions] = useState(layoutDefaults);
 
   const toggleLayoutOption = (key: LayoutOptionKey) => (checked: boolean) => {
     setLayoutOptions((current) => ({ ...current, [key]: checked }));
   };
-
 
   const handleUpdate = (index: number, updated: Hypothesis) => {
     setHypotheses((current) => {
