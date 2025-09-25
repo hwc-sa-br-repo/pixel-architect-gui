@@ -92,7 +92,7 @@ const menuSections = [
   {
     title: "Canvas",
     items: [
-      { title: "Business Cavas", url: "/business-cavas", icon: LayoutDashboard },
+      { title: "Business Canvas", url: "/business-canvas", icon: LayoutDashboard },
       { title: "Strategy Canvas", url: "/strategy-canvas", icon: LineChart },
     ]
   }
