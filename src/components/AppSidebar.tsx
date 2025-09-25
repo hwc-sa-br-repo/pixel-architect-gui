@@ -30,9 +30,7 @@ import {
   Server,
   Link,
   Code,
-  Sparkles,
-  Briefcase,
-  Bullseye
+  Sparkles
 } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
@@ -66,14 +64,6 @@ import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 
-const canvasSection = {
-  title: "Canvas",
-  items: [
-    { title: "Strategy Canvas", url: "/strategy-canvas", icon: Bullseye },
-    { title: "Business Canvas", url: "/business-canvas", icon: Briefcase },
-  ],
-};
-
 const menuSections = [
   {
     title: "Ideias",
@@ -97,16 +87,6 @@ const menuSections = [
       { title: "Pesquisa Externa", url: "/pesquisa-externa", icon: Search },
     ]
   }
-];
-
-const settingsNavigation = [
-  {
-    title: "Repositório de dados",
-    description: "Configure as fontes e destinos dos seus dados.",
-    url: "/repositorio-dados",
-    icon: Database,
-  },
-  canvasSection,
 ];
 
 const settingsNavigation = [
