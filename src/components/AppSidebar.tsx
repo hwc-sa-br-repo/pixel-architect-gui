@@ -88,6 +88,15 @@ const menuSections = [
       { title: "Geração de POC", url: "/geracao-poc", icon: FlaskConical },
       { title: "Pesquisa Externa", url: "/pesquisa-externa", icon: Search },
     ]
+  }
+];
+
+const settingsNavigation = [
+  {
+    title: "Repositório de dados",
+    description: "Configure as fontes e destinos dos seus dados.",
+    url: "/repositorio-dados",
+    icon: Database,
   },
   {
     title: "Canvas",
