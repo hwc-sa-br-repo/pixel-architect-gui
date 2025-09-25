@@ -9,19 +9,10 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
-
-interface OpportunityBranch {
-  id: string;
-  label: string;
-  description: string;
-  solutionLabel: string;
-  solutionDescription: string;
-  experimentationLabel: string;
-  experimentationDescription: string;
-}
+import { Plus, Trash2 } from "lucide-react";
 
 interface Hypothesis {
   id: string;
@@ -33,6 +24,27 @@ interface Hypothesis {
   legalConstraints: string;
   note: string;
 }
+
+interface TreeSection {
+  id: string;
+  title: string;
+  description: string;
+}
+
+interface ExperimentationNode {
+  id: string;
+  title: string;
+  description: string;
+}
+
+interface OpportunityTreeState {
+  outcome: TreeSection;
+  opportunity: TreeSection;
+  solution: TreeSection;
+  experimentations: ExperimentationNode[];
+}
+
+type EditableTreeSection = Exclude<keyof OpportunityTreeState, "experimentations">;
 
 const layoutDefaults = {
   showHeaderBadge: true,
@@ -104,26 +116,112 @@ const initialHypothesis: Hypothesis = {
     "Esses dois itens abaixo não fazem parte da árvore de oportunidades, mas são relacionados a cada oportunidade, devendo portanto ser gerados em toda reunião.",
 };
 
-const opportunityBranches: OpportunityBranch[] = [
-  {
-    id: "branch-a",
-    label: "Oportunidade",
-    description: "Necessidade desconhecida do cliente",
-    solutionLabel: "Solução",
-    solutionDescription: "Como pode ser satisfeita",
-    experimentationLabel: "Experimentação",
-    experimentationDescription: "Como pode ser validada",
+const initialOpportunityTree: OpportunityTreeState = {
+  outcome: {
+    id: "outcome",
+    title: "Melhorar experiência do usuário",
+    description: "Aumentar satisfação e engajamento dos usuários",
   },
-  {
-    id: "branch-b",
-    label: "Oportunidade",
-    description: "Necessidade desconhecida do cliente",
-    solutionLabel: "Solução",
-    solutionDescription: "Como pode ser satisfeita",
-    experimentationLabel: "Experimentação",
-    experimentationDescription: "Como pode ser validada",
+  opportunity: {
+    id: "opportunity",
+    title: "Nova Oportunidade",
+    description: "Clique para editar",
   },
-];
+  solution: {
+    id: "solution",
+    title: "Nova Solução",
+    description: "Clique para editar",
+  },
+  experimentations: [
+    { id: "experimentation-1", title: "Nova Experimentação", description: "Clique para editar" },
+    { id: "experimentation-2", title: "Nova Experimentação", description: "Clique para editar" },
+    { id: "experimentation-3", title: "Nova Experimentação", description: "Clique para editar" },
+    { id: "experimentation-4", title: "Nova Experimentação", description: "Clique para editar" },
+  ],
+};
+
+type TreeNodeVariant = "outcome" | "opportunity" | "solution" | "experimentation";
+
+const treeVariantStyles: Record<
+  TreeNodeVariant,
+  {
+    container: string;
+    label: string;
+    title: string;
+    description: string;
+  }
+> = {
+  outcome: {
+    container:
+      "border-purple-200/80 bg-gradient-to-b from-purple-50 via-white to-purple-50/70 text-purple-900 shadow-sm",
+    label: "text-purple-600",
+    title: "text-purple-800",
+    description: "text-purple-700",
+  },
+  opportunity: {
+    container:
+      "border-amber-200/80 bg-gradient-to-b from-amber-50 via-white to-amber-50/70 text-amber-900 shadow-sm",
+    label: "text-amber-600",
+    title: "text-amber-800",
+    description: "text-amber-700",
+  },
+  solution: {
+    container:
+      "border-emerald-200/80 bg-gradient-to-b from-emerald-50 via-white to-emerald-50/70 text-emerald-900 shadow-sm",
+    label: "text-emerald-600",
+    title: "text-emerald-800",
+    description: "text-emerald-700",
+  },
+  experimentation: {
+    container:
+      "border-sky-200/80 bg-gradient-to-b from-sky-50 via-white to-sky-50/70 text-sky-900 shadow-sm",
+    label: "text-sky-600",
+    title: "text-sky-800",
+    description: "text-sky-700",
+  },
+};
+
+const OpportunityTreeNode = ({
+  label,
+  title,
+  description,
+  onTitleChange,
+  onDescriptionChange,
+  variant,
+  compact,
+}: {
+  label: string;
+  title: string;
+  description: string;
+  onTitleChange: (value: string) => void;
+  onDescriptionChange: (value: string) => void;
+  variant: TreeNodeVariant;
+  compact?: boolean;
+}) => {
+  const styles = treeVariantStyles[variant];
+
+  return (
+    <div
+      className={`flex w-full flex-col gap-3 rounded-[28px] border px-6 py-5 ${
+        compact ? "max-w-[220px]" : "max-w-md"
+      } ${styles.container}`}
+    >
+      <span className={`text-xs font-semibold uppercase tracking-[0.25em] ${styles.label}`}>{label}</span>
+      <Input
+        value={title}
+        onChange={(event) => onTitleChange(event.target.value)}
+        placeholder="Clique para editar"
+        className={`h-auto border-none bg-transparent px-0 text-base font-semibold ${styles.title} focus-visible:ring-0`}
+      />
+      <Textarea
+        value={description}
+        onChange={(event) => onDescriptionChange(event.target.value)}
+        placeholder="Clique para editar"
+        className={`min-h-[64px] resize-none border-none bg-transparent p-0 text-sm leading-relaxed ${styles.description} focus-visible:ring-0`}
+      />
+    </div>
+  );
+};
 
 const HypothesisCard = ({
   hypothesis,
@@ -271,6 +369,7 @@ const HypothesisCard = ({
 export const HypothesesGeneration = () => {
   const [hypotheses, setHypotheses] = useState<Hypothesis[]>([initialHypothesis]);
   const [layoutOptions, setLayoutOptions] = useState(layoutDefaults);
+  const [opportunityTree, setOpportunityTree] = useState(initialOpportunityTree);
 
   const toggleLayoutOption = (key: LayoutOptionKey) => (checked: boolean) => {
     setLayoutOptions((current) => ({ ...current, [key]: checked }));
@@ -320,6 +419,59 @@ export const HypothesesGeneration = () => {
         note: initialHypothesis.note,
       },
     ]);
+  };
+
+  const updateTreeSection = (
+    section: EditableTreeSection,
+    field: "title" | "description",
+    value: string,
+  ) => {
+    setOpportunityTree((current) => ({
+      ...current,
+      [section]: {
+        ...current[section],
+        [field]: value,
+      },
+    }));
+  };
+
+  const updateExperimentation = (
+    id: string,
+    field: "title" | "description",
+    value: string,
+  ) => {
+    setOpportunityTree((current) => ({
+      ...current,
+      experimentations: current.experimentations.map((item) =>
+        item.id === id
+          ? {
+              ...item,
+              [field]: value,
+            }
+          : item,
+      ),
+    }));
+  };
+
+  const handleAddExperimentation = () => {
+    setOpportunityTree((current) => ({
+      ...current,
+      experimentations: [
+        ...current.experimentations,
+        {
+          id: `experimentation-${current.experimentations.length + 1}-${Date.now()}`,
+          title: "Nova Experimentação",
+          description: "Clique para editar",
+        },
+      ],
+    }));
+  };
+
+  const handleRemoveExperimentation = (id: string) => {
+    setOpportunityTree((current) => ({
+      ...current,
+      experimentations: current.experimentations.filter((item) => item.id !== id),
+    }));
   };
 
   return (
@@ -380,38 +532,76 @@ export const HypothesesGeneration = () => {
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="relative mx-auto max-w-4xl">
-                  <div className="flex flex-col items-center gap-2 text-center">
-                    <div className="rounded-full border border-purple-200 bg-gradient-to-r from-purple-100 via-white to-purple-50 px-6 py-2 text-sm font-medium text-purple-700 shadow-sm">
-                      Outcome
-                    </div>
-                    <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">O que deve ser alcançado</p>
-                  </div>
+                <div className="mx-auto flex max-w-5xl flex-col items-center gap-6 text-center">
+                  <OpportunityTreeNode
+                    label="Outcome"
+                    title={opportunityTree.outcome.title}
+                    description={opportunityTree.outcome.description}
+                    onTitleChange={(value) => updateTreeSection("outcome", "title", value)}
+                    onDescriptionChange={(value) => updateTreeSection("outcome", "description", value)}
+                    variant="outcome"
+                  />
 
-                  <Separator className="mx-auto my-8 h-px w-3/4 bg-gradient-to-r from-transparent via-purple-200 to-transparent" />
+                  <div className="h-10 w-px rounded-full bg-gradient-to-b from-purple-200 via-purple-300 to-purple-200" />
 
-                  <div className="grid gap-6 md:grid-cols-2">
-                    {opportunityBranches.map((branch) => (
-                      <div key={branch.id} className="relative flex flex-col gap-4 rounded-3xl border border-purple-200/70 bg-white/80 p-6 shadow-sm">
-                        <div className="flex flex-col gap-1">
-                          <span className="text-xs font-semibold uppercase tracking-wide text-purple-600">{branch.label}</span>
-                          <p className="text-sm text-muted-foreground">{branch.description}</p>
-                        </div>
-                        <div className="rounded-2xl border border-purple-100 bg-purple-50/70 p-4">
-                          <span className="text-xs font-semibold uppercase tracking-wide text-purple-700">
-                            {branch.solutionLabel}
-                          </span>
-                          <p className="mt-2 text-sm text-purple-900">{branch.solutionDescription}</p>
-                        </div>
-                        <div className="rounded-2xl border border-purple-100 bg-purple-50/40 p-4">
-                          <span className="text-xs font-semibold uppercase tracking-wide text-purple-700">
-                            {branch.experimentationLabel}
-                          </span>
-                          <p className="mt-2 text-sm text-purple-900">{branch.experimentationDescription}</p>
-                        </div>
+                  <OpportunityTreeNode
+                    label="Oportunidade"
+                    title={opportunityTree.opportunity.title}
+                    description={opportunityTree.opportunity.description}
+                    onTitleChange={(value) => updateTreeSection("opportunity", "title", value)}
+                    onDescriptionChange={(value) => updateTreeSection("opportunity", "description", value)}
+                    variant="opportunity"
+                  />
+
+                  <div className="h-10 w-px rounded-full bg-gradient-to-b from-amber-200 via-emerald-200 to-emerald-300" />
+
+                  <OpportunityTreeNode
+                    label="Solução"
+                    title={opportunityTree.solution.title}
+                    description={opportunityTree.solution.description}
+                    onTitleChange={(value) => updateTreeSection("solution", "title", value)}
+                    onDescriptionChange={(value) => updateTreeSection("solution", "description", value)}
+                    variant="solution"
+                  />
+
+                  <div className="h-8 w-px rounded-full bg-gradient-to-b from-emerald-200 via-sky-200 to-sky-300" />
+
+                  <div className="flex w-full flex-wrap justify-center gap-4">
+                    {opportunityTree.experimentations.map((item) => (
+                      <div key={item.id} className="relative flex flex-col items-start gap-3">
+                        <OpportunityTreeNode
+                          label="Experimentação"
+                          title={item.title}
+                          description={item.description}
+                          onTitleChange={(value) => updateExperimentation(item.id, "title", value)}
+                          onDescriptionChange={(value) => updateExperimentation(item.id, "description", value)}
+                          variant="experimentation"
+                          compact
+                        />
+                        {opportunityTree.experimentations.length > 1 && (
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={() => handleRemoveExperimentation(item.id)}
+                            className="absolute -right-2 -top-2 h-8 w-8 rounded-full border border-sky-200 bg-white/90 text-sky-500 hover:bg-sky-50"
+                            aria-label="Remover experimentação"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                          </Button>
+                        )}
                       </div>
                     ))}
                   </div>
+
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={handleAddExperimentation}
+                    className="mt-2 flex items-center gap-2 rounded-full border-sky-200 px-5 text-sky-700 hover:bg-sky-50"
+                  >
+                    <Plus className="h-4 w-4" />
+                    Adicionar experimentação
+                  </Button>
                 </div>
               </CardContent>
             </Card>
