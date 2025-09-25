@@ -15,6 +15,7 @@ import { HypothesesGeneration } from "./pages/HypothesesGeneration";
 import { BusinessCanvas } from "./pages/BusinessCanvas";
 import { StrategyCanvas } from "./pages/StrategyCanvas";
 
+
 const queryClient = new QueryClient();
 
 const App = () => (
