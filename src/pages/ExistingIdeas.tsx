@@ -5,7 +5,6 @@ import {
   BarChart3,
   Eye,
   Heart,
-  Rocket,
   Sparkles,
   Star,
   Target,
@@ -82,7 +81,6 @@ const ideas: Idea[] = [
     actions: [
       { label: "Curtir", icon: Heart, variant: "outline" },
       { label: "Ver Detalhes", icon: Eye },
-      { label: "Desenvolver MVP", icon: Rocket, variant: "secondary" },
     ],
   },
   {
@@ -112,7 +110,6 @@ const ideas: Idea[] = [
     actions: [
       { label: "Curtir", icon: Heart, variant: "outline" },
       { label: "Ver Detalhes", icon: Eye },
-      { label: "Ver Piloto", icon: Rocket, variant: "secondary" },
     ],
   },
   {
@@ -142,7 +139,6 @@ const ideas: Idea[] = [
     actions: [
       { label: "Curtir", icon: Heart, variant: "outline" },
       { label: "Ver Detalhes", icon: Eye },
-      { label: "Desenvolver MVP", icon: Rocket, variant: "secondary" },
     ],
   },
 ];
