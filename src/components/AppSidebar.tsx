@@ -30,7 +30,9 @@ import {
   Server,
   Link,
   Code,
-  Sparkles
+  Sparkles,
+  Briefcase,
+  Bullseye
 } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 
@@ -85,6 +87,13 @@ const menuSections = [
       { title: "Validação de Hipóteses", url: "/validacao-hipoteses", icon: Shield },
       { title: "Geração de POC", url: "/geracao-poc", icon: FlaskConical },
       { title: "Pesquisa Externa", url: "/pesquisa-externa", icon: Search },
+    ]
+  },
+  {
+    title: "Canvas",
+    items: [
+      { title: "Business Canvas", url: "/business-canvas", icon: Briefcase },
+      { title: "Strategy Canvas", url: "/strategy-canvas", icon: Bullseye },
     ]
   }
 ];

@@ -12,6 +12,9 @@ import { MyIdeas } from "./pages/MyIdeas";
 import { MarketMapping } from "./pages/MarketMapping";
 import { PainMapping } from "./pages/PainMapping";
 import { HypothesesGeneration } from "./pages/HypothesesGeneration";
+import { BusinessCanvas } from "./pages/BusinessCanvas";
+import { StrategyCanvas } from "./pages/StrategyCanvas";
+
 
 const queryClient = new QueryClient();
 
@@ -30,6 +33,8 @@ const App = () => (
             <Route path="mapeamento-mercado" element={<MarketMapping />} />
             <Route path="mapeamento-dores" element={<PainMapping />} />
             <Route path="geracao-hipoteses" element={<HypothesesGeneration />} />
+            <Route path="business-canvas" element={<BusinessCanvas />} />
+            <Route path="strategy-canvas" element={<StrategyCanvas />} />
           </Route>
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
