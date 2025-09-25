@@ -3,11 +3,9 @@ import type { LucideIcon } from "lucide-react";
 import {
   Activity,
   BarChart3,
-  ClipboardCheck,
   Heart,
   Lightbulb,
   MessageSquare,
-  Rocket,
   Sparkles,
   Target,
   Users,
@@ -81,7 +79,6 @@ const myIdeas: Idea[] = [
     actions: [
       { label: "Curtir", icon: Heart, variant: "outline" },
       { label: "Ver Detalhes", icon: Lightbulb },
-      { label: "Planejar MVP", icon: Rocket, variant: "secondary" },
     ],
   },
   {
@@ -111,7 +108,6 @@ const myIdeas: Idea[] = [
     actions: [
       { label: "Curtir", icon: Heart, variant: "outline" },
       { label: "Ver Detalhes", icon: MessageSquare },
-      { label: "Rodar Piloto", icon: ClipboardCheck, variant: "secondary" },
     ],
   },
 ];
