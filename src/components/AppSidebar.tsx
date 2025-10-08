@@ -56,7 +56,10 @@ export function AppSidebar() {
   return (
     <Sidebar collapsible="icon">
       <SidebarHeader className="border-b border-sidebar-border p-4">
-        <div className="flex items-center gap-2">
+        <NavLink
+          to="/"
+          className="flex items-center gap-2 rounded-lg p-1 transition-colors outline-none hover:opacity-80 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-sidebar"
+        >
           <div className="h-8 w-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
             <Lightbulb className="h-5 w-5 text-white" />
           </div>
@@ -64,7 +67,7 @@ export function AppSidebar() {
             <span className="font-semibold text-sm">IdeaFlow</span>
             <span className="text-xs text-muted-foreground">Business Ideas</span>
           </div>
-        </div>
+        </NavLink>
       </SidebarHeader>
 
       <SidebarContent>
