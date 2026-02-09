@@ -43,3 +43,14 @@ A aplicacao fica em http://localhost:4173. Para outra porta, use:
 ```sh
 PORT=3000 npm run start
 ```
+
+## Deploy no GitHub Pages
+
+Este projeto usa um workflow do GitHub Actions para publicar a pasta `dist` no GitHub Pages.
+
+1. Garanta que o repositorio esteja na branch `main`.
+2. No GitHub, abra **Settings > Pages**.
+3. Em **Build and deployment**, selecione **GitHub Actions**.
+4. Faça push para `main` (ou execute manualmente o workflow).
+
+O workflow define automaticamente o `BASE_URL` com o nome do repositorio para ajustar o `base` do Vite durante o build.
