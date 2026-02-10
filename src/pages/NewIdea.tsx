@@ -83,7 +83,7 @@ export const NewIdea = () => {
           </div>
           <h1 className="text-2xl font-semibold leading-tight">Cadastrar nova ideia</h1>
           <p className="text-muted-foreground max-w-2xl">
-            Estruture uma nova oportunidade descrevendo problema, solução proposta, impacto esperado e recursos necessários. Esse formulário reflete o fluxo utilizado pelo time da Elo para priorização de ideias.
+            Estruture uma nova oportunidade descrevendo problema, solução proposta, impacto esperado e recursos necessários. Esse formulário reflete o fluxo utilizado pela equipe para priorização de ideias.
           </p>
         </div>
         <div className="flex flex-col sm:flex-row gap-3">

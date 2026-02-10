@@ -149,7 +149,7 @@ const ExistingIdeas = () => {
       <div className="space-y-2">
         <h1 className="text-2xl font-semibold">Ideias existentes</h1>
         <p className="text-muted-foreground max-w-2xl">
-          Acompanhe as iniciativas que já estão em avaliação na Elo. Compare métricas de viabilidade, inovação e potencial para decidir o próximo passo.
+          Acompanhe as iniciativas que já estão em avaliação na plataforma. Compare métricas de viabilidade, inovação e potencial para decidir o próximo passo.
         </p>
       </div>
 
